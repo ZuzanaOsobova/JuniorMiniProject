@@ -12,19 +12,23 @@
 
       <div class="form-container" id="form">
         <h2>Contact Form</h2>
+        <p id="errors" style="color: #dd0000"></p>
         <div class="form-group">
           <form class="form-horizontal">
 
             <!-- TODO veškeré kontroly -->
 
+            <!-- TODO TypeScript kontrolu required -->
             <label for="firstName">First Name:</label>
-            <input type="text" name="firstName" id="firstName" placeholder="First Name" required />
+            <input type="text" name="firstName" id="firstName" placeholder="First Name"  required/>
 
             <label for="lastName">Last Name:</label>
-            <input type="text" name="lastName" id="lastName" placeholder="Last Name" required />
+            <input type="text" name="lastName" id="lastName" placeholder="Last Name"  required/>
 
+            <!-- TODO kontrola validity emailu (REGEX) -->
             <label for="email">Email:</label>
-            <input type="text" name="email" id="email" placeholder="Email" required />
+            <input type="text" name="email" id="email" placeholder="Email"  required/>
+
 
             <label for="phone">Phone:</label>
             <input type="text" name="phone" id="phone" placeholder="Phone" />
@@ -76,6 +80,7 @@
             </div>
 
 
+            <!-- TODO Nějaká kontrola správného datumu a převedení na správnou verzi pro backend -->
             <label for="birthDate">Birthday:</label>
             <input type="text" name="birthDate" id="birthDate" placeholder="Birthday" />
 

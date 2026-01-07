@@ -23,35 +23,15 @@ if (app) {
   const form = document.getElementById('form');
 
   if (form) {
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       console.log(e)
       console.log(form)
 
-      //TODO Opravit tuto část, zajistit správné typy dat
+      //TODO Opravit tuto část, zajistit správné typy dat pomocí TypeScriptu
 
-      //Alternativa od Copilota, zajistí, že všechna data, která přijdou, tak jsou správná, případně je ošetří
-
-      /*const formEl = e.currentTarget as HTMLFormElement;
-      const fd = new FormData(formEl);
-
-      const data = {
-        firstName: (fd.get('firstName') as string) || '',
-        lastName: (fd.get('lastName') as string) || '',
-        email: (fd.get('email') as string) || '',
-        phone: (fd.get('phone') as string) || '',
-        note: (fd.get('note') as string) || '',
-        gender: (fd.get('gender') as string) || '',
-        city: (fd.get('city') as string) || '',
-        street: (fd.get('street') as string) || '',
-        houseNumber: (fd.get('houseNumber') as string) || '',
-        zipCode: (fd.get('zipCode') as string) || 0,
-        birthDate: (fd.get('birthDate') as string) || '',
-      };*/
-
-
-      //Problém: sice funkční, ale nazjišťuje, že opravdu přijdou správná data
       const data = {
         firstName: e.target.firstName.value,
         lastName: e.target.lastName.value,
@@ -64,20 +44,43 @@ if (app) {
         houseNumber: e.target.houseNumber.value,
         zipCode: e.target.zipCode.value,
 
-        //birthDate: e.target.birthDate.value //mám tu nějaký problém, že to nelze "cast to date"
+        //birthDate: e.target.birthDate.value // TODO mám tu nějaký problém, že to nelze "cast to date"
       };
 
-      console.log(data);
 
-      const response = await fetch('/api/contacts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
+      //TODO kontrola firstName, lastName, email
+      //Potřebuji zkontrolovat první tři, pokud není, tak hodíme error do promněné errors. Potom pokud errors nejsou prázdné, tak vrátíme na stránku nový <div> s error hláškou
+      let errors = [];
+      if (!data.firstName) {
+        errors.push("First Name");
+      }
+      if (!data.lastName) {
+        errors.push("Last Name");
+      }
 
-      const result = await response.json();
+      //TODO kontrola, že email je reálný
+      if (!data.email) {
+        errors.push("Email");
+      }
 
-      console.log(result);
+      if (errors.length > 0) {
+
+        const errorsMessage = document.getElementById("errors");
+        errorsMessage.innerHTML = `You have forgotten to fill out these things in the form: ${errors.toString()}`;
+
+      } else {
+        console.log(data);
+
+        const response = await fetch('/api/contacts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        console.log(result);
+      }
     });
   }
 
