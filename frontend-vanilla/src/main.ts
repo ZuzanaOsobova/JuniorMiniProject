@@ -1,5 +1,5 @@
 import './styles/main.css';
-import * as stream from "node:stream";
+//import * as stream from "node:stream";
 
 // TODO: Implementovat aplikaci pro správu kontaktů
 //
@@ -46,7 +46,6 @@ if (app) {
         //birthDate: e.target.birthDate.value // TODO mám tu nějaký problém, že to nelze "cast to date"
       };
 
-      //TODO cleanup všechno html a css <p>
 
 
       let errors = [];
@@ -57,24 +56,38 @@ if (app) {
         errors.push("Last Name");
       }
 
-      //TODO kontrola, že email je reálný
+      //Kontrola, že email je reálný
       const emailRegex: RegExp = /^[\w.-]+@([\w-]+\.)+[\w-]{2,}$/gm; //regex na poznání emailu
+
       if (!data.email) {
         errors.push("Email");
       } else if (!emailRegex.test(data.email)) {
         console.log("Email je špatně: " + data.email);
         const email = document.getElementById("incorrectEmail");
-        email.innerHTML = "This is not a correct email.";
+        if (email) {
+          email.innerHTML = "This is not a correct email.";
+        }
         errors.push("Email");
       }
 
+      //Kontrola errorů, buďto error messages anebo se vše pošle a form reset()
       if (errors.length > 0) {
-
         const errorsMessage = document.getElementById("errors");
-        errorsMessage.innerHTML = `You have forgotten to fill out these things in the form: ${errors.toString()}`;
-
+        if (errorsMessage) {
+          errorsMessage.innerHTML = `You have forgotten to fill out these things in the form: ${errors.toString()}`;
+        }
       } else {
-        console.log(data);
+
+        //CleanUp existujících zpráv
+        // @ts-ignore
+        document.getElementById("errors").innerHTML = "";
+
+        // @ts-ignore
+        document.getElementById("incorrectEmail").innerHTML = "";
+
+        // @ts-ignore
+        document.getElementById("contactForm").reset();
+
 
         const response = await fetch('/api/contacts', {
           method: 'POST',

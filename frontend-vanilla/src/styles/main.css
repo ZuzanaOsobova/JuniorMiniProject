@@ -128,18 +128,29 @@ button[type="submit"]:hover {
 
 /* TODO: Junioři přidají vlastní styling podle zadání */
 
+
 #gender {
+  border: 1px solid #cccccc;
+}
+.gender {
   display: flex;
-  justify-content: space-between;
-
-  font-size: 0.85em;
-
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: nowrap;
 }
 
 .singleGender {
-  display: flex;
+  display: inline-flex;
+  align-items: center;
 }
 
 .singleGender label {
   padding-left: 5px;
+  font-size: 0.85em;
+}
+
+fieldset {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
 }

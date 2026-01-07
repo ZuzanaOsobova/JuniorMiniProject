@@ -14,7 +14,7 @@
         <h2>Contact Form</h2>
         <p id="errors" style="color: #dd0000"></p>
         <div class="form-group">
-          <form class="form-horizontal">
+          <form class="form-horizontal" id="contactForm">
 
             <!-- TODO TypeScript kontrolu required -->
             <label for="firstName">First Name:</label>
@@ -36,46 +36,45 @@
 
 
 
-            <label for="gender">Gender:</label>
-            <div id="gender">
+            <fieldset id="gender">
+              <legend>Gender</legend>
+              <div class="gender">
+                <span class="singleGender">
+                  <input type="radio" name="gender" id="female" value="female">
+                  <label for="female">Female</label>
+                </span>
 
-              <div class="singleGender">
-                <input type="radio" name="gender" id="female" value="female">
-                <label for="female">Female</label>
+                <span class="singleGender">
+                  <input type="radio" name="gender" id="male" value="male">
+                  <label for="male">Male</label>
+                </span>
 
+                <span class="singleGender">
+                  <input type="radio" name="gender" id="other" value="other">
+                  <label for="other">Other</label>
+                </span>
               </div>
-              <div class="singleGender">
-                <input type="radio" name="gender" id="male" value="male">
-                <label for="male">Male</label>
 
-              </div>
-
-              <div class="singleGender">
-                <input type="radio" name="gender" id="other" value="other">
-                <label for="other">Other</label>
-
-              </div>
+            </fieldset>
 
 
-            </div>
 
 
-            <div class="detail-panel">
-              <p> = Address = </p>
+              <fieldset>
+                <legend>Address</legend>
+                <label for="city">City:</label>
+                <input type="text" name="city" id="city" placeholder="City" />
 
-              <label for="city">City:</label>
-              <input type="text" name="city" id="city" placeholder="City" />
+                <label for="street">Street:</label>
+                <input type="text" name="street" id="street" placeholder="Street" />
 
-              <label for="street">Street:</label>
-              <input type="text" name="street" id="street" placeholder="Street" />
+                <label for="houseNumber">House Number:</label>
+                <input type="text" name="houseNumber" id="houseNumber" placeholder="House Number" />
 
-              <label for="houseNumber">House Number:</label>
-              <input type="text" name="houseNumber" id="houseNumber" placeholder="House Number" />
+                <label for="zipCode">Zip Code:</label>
+                <input type="number" name="zipCode" id="zipCode" placeholder="Zip Code" />
+              </fieldset>
 
-              <label for="zipCode">Zip Code:</label>
-              <input type="number" name="zipCode" id="zipCode" placeholder="Zip Code" />
-
-            </div>
 
 
             <!-- TODO Nějaká kontrola správného datumu a převedení na správnou verzi pro backend -->
