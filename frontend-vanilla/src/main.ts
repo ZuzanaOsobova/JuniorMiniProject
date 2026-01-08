@@ -79,14 +79,14 @@ if (app) {
       } else {
 
         //CleanUp existujících zpráv
-        // @ts-ignore
-        document.getElementById("errors").innerHTML = "";
+        const errorsMessage = document.getElementById("errors");
+        errorsMessage ? errorsMessage.innerHTML = "" : null;
 
-        // @ts-ignore
-        document.getElementById("incorrectEmail").innerHTML = "";
+        const incorrectEmail = document.getElementById("incorrectEmail");
+        incorrectEmail ? incorrectEmail.innerHTML = "" : null;
 
-        // @ts-ignore
-        document.getElementById("contactForm").reset();
+        const contactForm = document.getElementById("contactForm");
+        contactForm ? contactForm.innerHTML = "" : null;
 
 
         const response = await fetch('/api/contacts', {
