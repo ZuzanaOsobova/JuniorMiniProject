@@ -1,5 +1,6 @@
 import './styles/main.css';
 //import * as stream from "node:stream";
+import {parse, isValid, format} from 'date-fns';
 
 // TODO: Implementovat aplikaci pro správu kontaktů
 //
@@ -16,6 +17,28 @@ console.log('Vanilla TypeScript frontend připraven k implementaci!');
 const app = document.getElementById('app');
 
 if (app) {
+
+  //Kontrola datummu
+  const birthDateEl = document.getElementById('birthDate');
+  const errorEl = document.getElementById('birthDateError');
+
+  birthDateEl?.addEventListener('change', () => {
+
+    const raw = birthDateEl.value; //Typescript má problém s value = Property Value does not exist on HTMLElement
+    console.log(raw);
+
+    const date = parse(raw, 'yyyy-MM-dd', new Date());
+    if (!isValid(date)) {
+      // @ts-ignore
+      errorEl.textContent = "Please enter a valid date.";
+      return;
+    }
+    // @ts-ignore
+    errorEl.textContent = "";
+
+    const payloadValue = format(date, 'dd-MM-yyyy');
+    console.log(payloadValue);
+  })
 
 
   //Správa tvorby nového kontaktu
