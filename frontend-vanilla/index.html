@@ -9,17 +9,7 @@
 
   <div id="header"></div>
 
-  <script type="module">
-    import {loadHeader} from "./src/header.ts";
-
-    const hostElement = document.getElementById("header");
-
-    if(hostElement) {
-      loadHeader(hostElement).catch((err) => {console.log(err)});
-    } else {
-      console.error("Missing #header element.")
-    }
-  </script>
+  <script type="module" src="src/header.ts" defer></script>
 
     <h1>Správa kontaktů - Vanilla TypeScript</h1>
 
@@ -123,6 +113,6 @@
 
     </div>
 
-    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="src/main.ts"></script>
   </body>
 </html>
