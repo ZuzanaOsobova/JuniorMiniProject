@@ -8,17 +8,26 @@
 <body>
 
 
-<div id="app"></div>
 <div id="header"></div>
+<script type="module">
+    import {loadHeader} from "./src/header.ts";
+
+    const hostElement = document.getElementById("header");
+
+    if(hostElement) {
+        loadHeader(hostElement).catch((err) => {console.log(err)});
+    } else {
+        console.error("Missing #header element.")
+    }
+</script>
 <h1>Seznam kontaktů</h1>
+<div id="app"></div>
 
 <!-- TODO Tady udělat ten seznam kontaktů -->
 
 
 
 
-<script type="module" src="/src/seznam.ts"></script>
-<script src="src/header.ts"></script>
-
+<!--<script type="module" src="/src/seznam.ts"></script>-->
 </body>
 </html>
