@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4948fdf2-0b18-4aa4-85db-f25d5e9edcdc" name="Changes" comment="Vytvoření základu pro include header" />
+    <list default="true" id="f87dd459-a087-4b84-8e54-4e09de518125" name="Changes" comment="files webstorm wouldn't let me leave" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,7 +54,6 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "header",
     "javascript.preferred.runtime.type.id": "node",
     "last_opened_file_path": "C:/Users/zosobova/Projects/JuniorMiniProject",
     "nodejs_package_manager_path": "yarn",

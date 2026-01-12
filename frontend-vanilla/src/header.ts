@@ -1,37 +1,20 @@
-// includes.js
-
-// Function to load HTML content into a target element
-async function loadHTML(elementId, filePath) {
+async function getData() {
+    const url = "./header.html";
     try {
-        // Fetch the external HTML file
-        const response = await fetch(filePath);
-
-        // Check if the request was successful
+        const response = await fetch(url);
         if (!response.ok) {
-            throw new Error(`Failed to load ${filePath}: ${response.statusText}`);
+            throw new Error(`Response status: ${response.status}`);
         }
 
-        // Extract HTML text from the response
-        const html = await response.text();
+        const result = await response.text();
+        console.log(result);
 
-        // Insert the HTML into the target element
-        const element = document.getElementById(elementId);
-        if (element) {
-            element.innerHTML = html;
-        } else {
-            throw new Error(`Element with ID "${elementId}" not found`);
-        }
+        const header = document.getElementById("header");
+        if (header) {header.innerHTML = result;}
+
     } catch (error) {
-        console.error('Error loading content:', error);
-        // Optional: Display a fallback message in the UI
-        // @ts-ignore
-        document.getElementById(elementId)?.innerHTML = `<p>Error loading content.</p>`;
+        console.error(error.message);
     }
 }
 
-// Load header and footer when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-    loadHTML('header', '../header.html'); // Load header into #header
-});
-
-// https://www.w3tutorials.net/blog/make-header-and-footer-files-to-be-included-in-multiple-html-pages/
+getData();
