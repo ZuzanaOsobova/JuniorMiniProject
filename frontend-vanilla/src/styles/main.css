@@ -25,6 +25,8 @@ nav {
   display: flex;
   gap: 10px;
   align-items: center;
+  border-bottom: #007bff solid 5px;
+  border-radius: 5px;
 }
 
 nav button {
@@ -41,12 +43,7 @@ nav button:hover {
 
 }
 
-#hr {
-  margin: 5px;
-  background-color: #007bff;
-  color: #007bff ;
-  height: 10px;
-}
+
 
 #app {
   max-width: 1200px;
