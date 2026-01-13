@@ -13,12 +13,15 @@ if (app){
 
 
 
-    contacts.forEach(contact => {
+    //TODO přepsat any na stringy a podobné
+    contacts.forEach((contact: { firstName: any; lastName: any; email: any; phone: any; note: any; gender: any; birthday: any; city: any; street: any; houseNumber: any; zipCode: any; _id: string; }) => {
         const li = document.createElement('li');
         li.setAttribute('class', 'contact');
 
+        //TODO udělat přes mapu
+
         //data očištěná od undefined
-        const firstName = contact.firstName ? contact.firstName : '';
+        const firstName = contact.firstName ?? "";
         const lastName = contact.lastName ? contact.lastName : '';
         const email = contact.email ? contact.email : '';
         const phone = contact.phone ? contact.phone : '';
@@ -27,17 +30,13 @@ if (app){
         const birthday = contact.birthday ? contact.birthday : '';
 
         const city = contact.city ? contact.city : '';
-        const street = contact.streeting ? contact.streeting : '';
+        const street = contact.street ? contact.street : '';
         const houseNumber = contact.houseNumber ? contact.houseNumber : '';
         const zipCode = contact.zipCode ? contact.zipCode : '';
 
 
-
-
-        li.setAttribute('class', 'contact');
-
         li.innerHTML = `<div class="contact-name">${firstName} ${lastName}</div>
-                            <div class="detail-panel">
+                            <div class="detail-panel" style="display: none">
                                 Email: ${email} <br>
                                 Phone: ${phone} <br>
                                 Note: ${note} <br>
@@ -74,13 +73,13 @@ if (app){
             }
         });
 
-        //TODO otázka, zda opravdu chceme záznam vymazat
+
         const deleteBtn = document.createElement('button');
         deleteBtn.textContent = 'Delete';
         deleteBtn.className = 'delete-btn';
 
         deleteBtn.addEventListener('click', async () => {
-
+            //TODO otázka, zda opravdu chceme záznam vymazat
 
 
             await fetch(`/api/contacts/${contact._id}`, {
