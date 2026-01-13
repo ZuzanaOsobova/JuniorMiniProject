@@ -38,23 +38,22 @@ if (app){
 
         li.innerHTML = `<div class="contact-name">${firstName} ${lastName}</div>
                             <div class="detail-panel">
-                            Email: ${email} <br>
-                            Phone: ${phone} <br>
-                            Note: ${note} <br>
-                            Gender: ${gender} <br>
-                            Birthday: ${birthday} <br>
-                            
-                            <fieldset>
-                                <legend>Adress</legend>
-                                City: ${city} <br>
-                                Street: ${street} <br>
-                                House Number: ${houseNumber} <br>
-                                Zip Code: ${zipCode} <br>
-                            </fieldset> 
-                            
-                            <br>
-                            
-                            <button class="delete-btn">Delete</button>
+                                Email: ${email} <br>
+                                Phone: ${phone} <br>
+                                Note: ${note} <br>
+                                Gender: ${gender} <br>
+                                Birthday: ${birthday} <br>
+                                
+                                <fieldset>
+                                    <legend>Adress</legend>
+                                    City: ${city} <br>
+                                    Street: ${street} <br>
+                                    House Number: ${houseNumber} <br>
+                                    Zip Code: ${zipCode} <br>
+                                </fieldset> 
+                                
+                                <br>
+                                <div id="delete-${contact._id}"></div>
                           </div>
                         `;
 
@@ -75,8 +74,36 @@ if (app){
             }
         });
 
+        //TODO otázka, zda opravdu chceme záznam vymazat
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.className = 'delete-btn';
+
+        deleteBtn.addEventListener('click', async () => {
+
+
+
+            await fetch(`/api/contacts/${contact._id}`, {
+                method: 'DELETE'
+            });
+
+            //TODO reload stránky, aby byly vidět změny => smazané kontaky
+
+        });
+
+
+
+        //Přidáváme celý list a delete button na stránku
         const list = document.getElementById('contacts-list');
-        if (list) {list.appendChild(li);}
+        if (list) {
+            list.appendChild(li);
+
+            const deleteDiv = document.getElementById('delete-'+contact._id);
+            if (deleteDiv) {
+                deleteDiv.appendChild(deleteBtn)
+            }
+        }
+
     });
 
 
