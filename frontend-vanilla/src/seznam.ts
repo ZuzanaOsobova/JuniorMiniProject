@@ -63,12 +63,11 @@ if (app){
         deleteBtn.className = 'delete-btn';
 
         deleteBtn.addEventListener('click', async () => {
-            //TODO otázka, zda opravdu chceme záznam vymazat
-
-
-            await fetch(`/api/contacts/${contact._id}`, {
-                method: 'DELETE'
-            });
+            if(window.confirm("Are you sure you want to delete this contact?" + contact.firstName + " " + contact.lastName)) {
+                await fetch(`/api/contacts/${contact._id}`, {
+                    method: 'DELETE'
+                });
+            }
 
             //TODO reload stránky, aby byly vidět změny => smazané kontaky
 
