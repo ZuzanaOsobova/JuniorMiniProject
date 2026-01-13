@@ -13,42 +13,26 @@ if (app){
 
 
 
-    //TODO přepsat any na stringy a podobné
-    contacts.forEach((contact: { firstName: any; lastName: any; email: any; phone: any; note: any; gender: any; birthday: any; city: any; street: any; houseNumber: any; zipCode: any; _id: string; }) => {
+
+    contacts.forEach((contact: { firstName: string; lastName: string; email: string; phone: string; note: string; gender: string; birthday: string; city: string; street: string; houseNumber: string; zipCode: number; _id: string; }) => {
         const li = document.createElement('li');
         li.setAttribute('class', 'contact');
 
-        //TODO udělat přes mapu
 
-        //data očištěná od undefined
-        const firstName = contact.firstName ?? "";
-        const lastName = contact.lastName ? contact.lastName : '';
-        const email = contact.email ? contact.email : '';
-        const phone = contact.phone ? contact.phone : '';
-        const note = contact.note ? contact.note : '';
-        const gender = contact.gender ? contact.gender : 'Preferred not to say';
-        const birthday = contact.birthday ? contact.birthday : '';
-
-        const city = contact.city ? contact.city : '';
-        const street = contact.street ? contact.street : '';
-        const houseNumber = contact.houseNumber ? contact.houseNumber : '';
-        const zipCode = contact.zipCode ? contact.zipCode : '';
-
-
-        li.innerHTML = `<div class="contact-name">${firstName} ${lastName}</div>
+        li.innerHTML = `<div class="contact-name">${contact.firstName ?? ""} ${contact.lastName ?? ""}</div>
                             <div class="detail-panel" style="display: none">
-                                Email: ${email} <br>
-                                Phone: ${phone} <br>
-                                Note: ${note} <br>
-                                Gender: ${gender} <br>
-                                Birthday: ${birthday} <br>
+                                Email: ${contact.email ?? ""} <br>
+                                Phone: ${contact.phone ?? ""} <br>
+                                Note: ${contact.note ?? ""} <br>
+                                Gender: ${contact.gender ?? "Preferred not to say"} <br>
+                                Birthday: ${contact.birthday ?? ""} <br>
                                 
                                 <fieldset>
                                     <legend>Adress</legend>
-                                    City: ${city} <br>
-                                    Street: ${street} <br>
-                                    House Number: ${houseNumber} <br>
-                                    Zip Code: ${zipCode} <br>
+                                    City: ${contact.city ?? ""} <br>
+                                    Street: ${contact.street ?? ""} <br>
+                                    House Number: ${contact.houseNumber ?? ""} <br>
+                                    Zip Code: ${contact.zipCode ?? ""} <br>
                                 </fieldset> 
                                 
                                 <br>
