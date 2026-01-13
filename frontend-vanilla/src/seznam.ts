@@ -17,6 +17,7 @@ if (app){
     contacts.forEach((contact: { firstName: string; lastName: string; email: string; phone: string; note: string; gender: string; birthday: string; city: string; street: string; houseNumber: string; zipCode: number; _id: string; }) => {
         const li = document.createElement('li');
         li.setAttribute('class', 'contact');
+        li.setAttribute('id', 'id_'+contact._id);
 
 
         li.innerHTML = `<div class="contact-name">${contact.firstName ?? ""} ${contact.lastName ?? ""}</div>
@@ -64,12 +65,13 @@ if (app){
 
         deleteBtn.addEventListener('click', async () => {
             if(window.confirm("Are you sure you want to delete this contact?" + contact.firstName + " " + contact.lastName)) {
+
+                //TODO obalit try catch
                 await fetch(`/api/contacts/${contact._id}`, {
                     method: 'DELETE'
                 });
+                li.remove();
             }
-
-            //TODO reload stránky, aby byly vidět změny => smazané kontaky
 
         });
 
