@@ -1,4 +1,6 @@
 import './styles/main.css';
+import './Contact.ts'
+import {Contact} from "./Contact.ts";
 
 
 const app = document.getElementById('app');
@@ -21,22 +23,6 @@ if (app){
         console.log('contacts', contacts);
 
 
-
-
-        type Contact = {
-            firstName : string,
-            lastName : string,
-            email : string,
-            phone : string,
-            note: string,
-            gender : string,
-            birthday: string,
-            city : string,
-            street: string,
-            houseNumber: string,
-            zipCode: number,
-            _id: string
-        }
 
         contacts.forEach((contact: Contact) => {
             const li = document.createElement('li');
