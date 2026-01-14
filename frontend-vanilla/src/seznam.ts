@@ -67,6 +67,9 @@ if (app){
             deleteBtn.addEventListener('click', async () => {
                 if(window.confirm("Are you sure you want to delete this contact?" + contact.firstName + " " + contact.lastName)) {
 
+                    deleteBtn.disabled = true;
+                    deleteBtn.setAttribute('style', "cursor: not-allowed");
+
                     try {
                         await fetch(`/api/contacts/${contact._id}`, {
                             method: 'DELETE'
@@ -75,6 +78,8 @@ if (app){
                     } catch (errors) {
                         console.log("Nepodařilo se smazat kontakt.");
                         console.log(errors);
+                        deleteBtn.disabled = false;
+
                     }
                 }
 
