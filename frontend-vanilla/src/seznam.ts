@@ -7,7 +7,15 @@ if (app){
 
     //Načtení kontaktů z API
     try {
+        console.log('App loaded!');
         const response = await fetch('/api/contacts');
+
+        if (!response.ok) {
+            console.log('Contact not found!');
+            throw Error(response.statusText);
+        }
+
+        console.log(response);
         const data = await response.json();
         const contacts = data.data;
         console.log('contacts', contacts);
@@ -63,22 +71,31 @@ if (app){
             const deleteBtn = document.createElement('button');
             deleteBtn.textContent = 'Delete';
             deleteBtn.className = 'delete-btn';
+            const deleteBtnErMes = document.createElement('div');
+            deleteBtnErMes.style.display = 'none';
+            deleteBtnErMes.style.color = 'red';
+            deleteBtnErMes.textContent = 'Nepodařilo se smazat kontakt.';
 
             deleteBtn.addEventListener('click', async () => {
-                if(window.confirm("Are you sure you want to delete this contact?" + contact.firstName + " " + contact.lastName)) {
+                if(window.confirm("Are you sure you want to delete this contact? " + contact.firstName + " " + contact.lastName)) {
 
                     deleteBtn.disabled = true;
                     deleteBtn.setAttribute('style', "cursor: not-allowed");
 
                     try {
-                        await fetch(`/api/contacts/${contact._id}`, {
+                        const response = await fetch(`/api/contacts/${contact._id}/bullshit`, {
                             method: 'DELETE'
                         });
+                        if (!response.ok) {throw Error(response.statusText);}
                         li.remove();
+
                     } catch (errors) {
                         console.log("Nepodařilo se smazat kontakt.");
                         console.log(errors);
                         deleteBtn.disabled = false;
+                        deleteBtn.setAttribute('style', "cursor: pointer");
+
+                        deleteBtnErMes.style.display = 'block';
 
                     }
                 }
@@ -95,6 +112,7 @@ if (app){
                 const deleteDiv = document.getElementById('delete-'+contact._id);
                 if (deleteDiv) {
                     deleteDiv.appendChild(deleteBtn)
+                    deleteDiv.appendChild(deleteBtnErMes)
                 }
             }
 
@@ -102,6 +120,10 @@ if (app){
 
     } catch (errors){
         console.error(errors);
+        let app = document.getElementById('app');
+        if (app){ // @ts-ignore
+            app.innerText = errors;
+        app.setAttribute('style', 'color: red');}
     }
 
 }
