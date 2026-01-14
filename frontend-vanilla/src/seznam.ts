@@ -83,7 +83,7 @@ if (app){
                     deleteBtn.setAttribute('style', "cursor: not-allowed");
 
                     try {
-                        const response = await fetch(`/api/contacts/${contact._id}/bullshit`, {
+                        const response = await fetch(`/api/contacts/${contact._id}`, {
                             method: 'DELETE'
                         });
                         if (!response.ok) {throw Error(response.statusText);}
