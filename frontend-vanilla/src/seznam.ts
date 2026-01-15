@@ -1,5 +1,6 @@
 import '/src/styles/main.css';
-import {Contact} from "/src/Contact.ts"; //TODO ask???
+import {Contact} from "./Contact.ts";
+import {format, formatDate} from "date-fns"; //TODO ask???
 
 
 const app = document.getElementById('app');
@@ -36,7 +37,7 @@ if (app){
                                 Phone: ${contact.phone ?? ""} <br>
                                 Note: ${contact.note ?? ""} <br>
                                 Gender: ${contact.gender ?? "Preferred not to say"} <br>
-                                Birthday: ${contact.birthday ?? ""} <br>
+                                Birthday: ${contact.birthDate ?? ""} <br>
                                 
                                 <fieldset>
                                     <legend>Adress</legend>
