@@ -1,4 +1,4 @@
-import './styles/main.css';
+import '/src/styles/main.css';
 //import * as stream from "node:stream";
 import {parse, isValid} from 'date-fns';
 

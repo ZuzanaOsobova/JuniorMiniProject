@@ -1,6 +1,5 @@
-import './styles/main.css';
-import './Contact.ts'
-import {Contact} from "./Contact.ts";
+import '/src/styles/main.css';
+import {Contact} from "/src/Contact.ts"; //TODO ask???
 
 
 const app = document.getElementById('app');
@@ -30,6 +29,7 @@ if (app){
             li.setAttribute('id', 'id_'+contact._id);
 
 
+            //TODO přidat nový button na edit, href dát index + id
             li.innerHTML = `<div class="contact-name">${contact.firstName ?? ""} ${contact.lastName ?? ""}</div>
                             <div class="detail-panel" style="display: none">
                                 Email: ${contact.email ?? ""} <br>
@@ -47,7 +47,9 @@ if (app){
                                 </fieldset> 
                                 
                                 <br>
-                                <div id="delete-${contact._id}"></div>
+                                <div id="delete-${contact._id}">
+                                    <a href="/index.html?id=${contact._id}" >Edit</a>
+                                </div>
                           </div>
                         `;
 
