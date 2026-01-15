@@ -1,6 +1,6 @@
 import '/src/styles/main.css';
 //import * as stream from "node:stream";
-import {parse, isValid} from 'date-fns';
+import {parse, isValid, formatDate, format} from 'date-fns';
 import {Contact} from "./Contact.ts";
 
 
@@ -34,9 +34,11 @@ if (app) {
             element.innerHTML = contact[key];
           } else if (key === "gender") {
             document.getElementById(contact[key])?.setAttribute("checked", "checked");
+
           } else if (key === "birthDate") {
-            //TODO dokončit
-            document.getElementById(contact[key])?.setAttribute("value");
+            const date = formatDate(contact[key], "yyyy-MM-dd");
+            document.getElementById(key)?.setAttribute("value", date);
+
 
 
           }

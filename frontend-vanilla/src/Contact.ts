@@ -5,7 +5,7 @@ export type Contact = {
     phone : string,
     note: string,
     gender : string,
-    birthday: string,
+    birthDate: string,
     city : string,
     street: string,
     houseNumber: string,

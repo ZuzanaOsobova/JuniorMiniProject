@@ -29,7 +29,7 @@ if (app){
             li.setAttribute('id', 'id_'+contact._id);
 
 
-            //TODO přidat nový button na edit, href dát index + id
+            //TODO upravit datum, aby se ukazovalo hezky
             li.innerHTML = `<div class="contact-name">${contact.firstName ?? ""} ${contact.lastName ?? ""}</div>
                             <div class="detail-panel" style="display: none">
                                 Email: ${contact.email ?? ""} <br>
