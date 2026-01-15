@@ -1,22 +1,56 @@
 import '/src/styles/main.css';
 //import * as stream from "node:stream";
 import {parse, isValid} from 'date-fns';
+import {Contact} from "./Contact.ts";
 
-// TODO: Implementovat aplikaci pro správu kontaktů
-//
-// 1. Vytvořit formulář pro vytvoření kontaktu
-// 2. Vytvořit seznam kontaktů
-// 3. Implementovat zobrazení detailu kontaktu
-// 4. Přidat možnost smazat kontakt
-//
-// API endpointy jsou dostupné na: http://localhost:3333/api/contacts
-// Dokumentace API: http://localhost:3333/swagger
+
 
 console.log('Vanilla TypeScript frontend připraven k implementaci!');
 
 const app = document.getElementById('app');
 
+//TODO zkontrolovat, zda v URL je ?ID=... v tom případě fetch a vrazit data do formuláře místo value a změnit na konci volací API, místo nového kontaktu již existující
+const paramsString = window.location.search;
+const searchParams = new URLSearchParams(paramsString);
+const id = searchParams.get("id") ?? null;
+console.log(id);
+
+
 if (app) {
+
+  if (id) {
+    try {
+      const response = await fetch(`/api/contacts/${id}`)
+      const data = await response.json();
+      const contact = data.data as Contact;
+      console.log(contact);
+      console.log(contact.gender)
+
+      for (let key in contact) {
+        console.log(key);
+        const element = document.getElementById(key);
+        if (element) {
+          if ( key === "note") {
+            element.innerHTML = contact[key];
+          } else if (key === "gender") {
+            document.getElementById(contact[key])?.setAttribute("checked", "checked");
+          } else if (key === "birthDate") {
+            //TODO dokončit
+            document.getElementById(contact[key])?.setAttribute("value");
+
+
+          }
+          else {
+            element.setAttribute("value", contact[key]);
+          }
+
+        }
+      }
+    }
+    catch (e) {
+
+    }
+  }
 
   //Kontrola datummu, použita knihovna date-fns
   const birthDateEl = document.getElementById('birthDate') as HTMLInputElement;
@@ -105,11 +139,22 @@ if (app) {
         if (contactForm) {contactForm.reset()}
 
 
-        const response = await fetch('/api/contacts', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
+        let response: Response;
+
+        if (id){
+          response = await fetch(`/api/contacts/${id}`, {
+            method: "PATCH",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          })
+
+        } else {
+          response = await fetch('/api/contacts', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+        }
 
         const result = await response.json();
 

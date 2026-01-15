@@ -48,7 +48,7 @@ if (app){
                                 
                                 <br>
                                 <div id="delete-${contact._id}">
-                                    <a href="/index.html?id=${contact._id}" >Edit</a>
+                                    <button class="submit"><a href="/index.html?id=${contact._id}" >Edit</a></button>
                                 </div>
                           </div>
                         `;
