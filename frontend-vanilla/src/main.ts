@@ -1,6 +1,6 @@
 import '/src/styles/main.css';
 //import * as stream from "node:stream";
-import {parse, isValid, formatDate, format} from 'date-fns';
+import {parse, isValid, formatDate} from 'date-fns';
 import {Contact} from "./Contact.ts";
 
 
@@ -9,11 +9,10 @@ console.log('Vanilla TypeScript frontend připraven k implementaci!');
 
 const app = document.getElementById('app');
 
-//TODO zkontrolovat, zda v URL je ?ID=... v tom případě fetch a vrazit data do formuláře místo value a změnit na konci volací API, místo nového kontaktu již existující
 const paramsString = window.location.search;
 const searchParams = new URLSearchParams(paramsString);
 const id = searchParams.get("id") ?? null;
-console.log(id);
+console.log("ID: " + id);
 
 
 if (app) {
@@ -23,34 +22,61 @@ if (app) {
       const response = await fetch(`/api/contacts/${id}`)
       const data = await response.json();
       const contact = data.data as Contact;
-      console.log(contact);
-      console.log(contact.gender)
-
-      for (let key in contact) {
-        console.log(key);
-        const element = document.getElementById(key);
-        if (element) {
-          if ( key === "note") {
-            element.innerHTML = contact[key];
-          } else if (key === "gender") {
-            document.getElementById(contact[key])?.setAttribute("checked", "checked");
-
-          } else if (key === "birthDate") {
 
 
-            const date = formatDate(contact[key], "yyyy-MM-dd");
-            document.getElementById(key)?.setAttribute("value", date);
 
-            console.log(contact[key]);
-            console.log(date)
+      for (const key of Object.keys(contact) as Array<keyof Contact>) {
+        const value = contact[key];
+        if (value == null) continue;
 
-          }
-          else {
-            element.setAttribute("value", contact[key]);
-          }
-
+        if (key === 'note') {
+          const el = document.getElementById('note');
+          if (el) el.textContent = String(value);
+          continue;
         }
+
+        if (key === 'gender') {
+          const radio = document.getElementById(String(value)) as HTMLInputElement | null;
+          radio?.setAttribute('checked', 'checked');
+          continue;
+        }
+
+        if (key === 'birthDate') {
+          const date = formatDate(String(value), 'yyyy-MM-dd');
+          document.getElementById('birthDate')?.setAttribute('value', date);
+          continue;
+        }
+
+        const el = document.getElementById(key as string);
+        if (el) el.setAttribute('value', String(value));
+
       }
+
+
+
+
+        /*for (let key in contact) {
+          console.log(key);
+          const element = document.getElementById(key);
+
+
+          //TODO přihodit kontrolu existujících dat
+          if (element && contact[key]) {
+            if ( key === "note") {
+              element.innerHTML = contact[key];
+            } else if (key === "gender") {
+              document.getElementById(contact[key])?.setAttribute("checked", "checked");
+
+            } else if (key === "birthDate") {
+              const date = formatDate(contact[key], "yyyy-MM-dd");
+              document.getElementById(key)?.setAttribute("value", date);
+
+            } else {
+              element.setAttribute("value", contact[key]);
+            }
+
+          }
+        }*/
     }
     catch (e) {
 
@@ -81,9 +107,6 @@ if (app) {
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-
-      console.log(e)
-      console.log(form)
 
       //TODO Opravit tuto část, zajistit správné typy dat pomocí TypeScriptu
 
@@ -140,9 +163,14 @@ if (app) {
         const incorrectEmail = document.getElementById("incorrectEmail");
         incorrectEmail ? incorrectEmail.innerHTML = "" : null;
 
+        //TODO tady možná úpravu při existujícím uživateli
         const contactForm = document.getElementById("contactForm") as HTMLFormElement;
         if (contactForm) {contactForm.reset()}
 
+
+        const message = document.getElementById("message") as HTMLElement;
+        message.innerText = "Saving your contact...";
+        message.style.color = "blue";
 
         let response: Response;
 
@@ -162,6 +190,17 @@ if (app) {
         }
 
         const result = await response.json();
+
+
+          message.style.color = "green";
+          message.innerText = "Contact was successfully saved;";
+          message.style.opacity = "1";
+          message.style.transition = "opacity 1s ease"
+
+          setTimeout(() =>{
+            message.style.opacity = "0";
+          }, 5000)
+
 
         console.log(result);
       }

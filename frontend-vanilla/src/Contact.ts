@@ -4,7 +4,7 @@ export type Contact = {
     email : string,
     phone? : string,
     note?: string,
-    gender? : string,
+    gender? : "female" | "male" |"other",
     birthDate?: string,
     city? : string,
     street?: string,
