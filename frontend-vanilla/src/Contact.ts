@@ -2,14 +2,14 @@ export type Contact = {
     firstName : string,
     lastName : string,
     email : string,
-    phone : string,
-    note: string,
-    gender : string,
-    birthDate: string,
-    city : string,
-    street: string,
-    houseNumber: string,
-    zipCode: number,
+    phone? : string,
+    note?: string,
+    gender? : string,
+    birthDate?: string,
+    city? : string,
+    street?: string,
+    houseNumber?: string,
+    zipCode?: number,
     _id: string
 }
 
