@@ -36,10 +36,13 @@ if (app) {
             document.getElementById(contact[key])?.setAttribute("checked", "checked");
 
           } else if (key === "birthDate") {
+
+
             const date = formatDate(contact[key], "yyyy-MM-dd");
             document.getElementById(key)?.setAttribute("value", date);
 
-
+            console.log(contact[key]);
+            console.log(date)
 
           }
           else {

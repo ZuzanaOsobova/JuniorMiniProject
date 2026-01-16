@@ -1,6 +1,6 @@
 import '/src/styles/main.css';
 import {Contact} from "./Contact.ts";
-import {format, formatDate} from "date-fns"; //TODO ask???
+import {format, formatDate, parse} from "date-fns"; //TODO ask???
 
 
 const app = document.getElementById('app');
@@ -29,6 +29,11 @@ if (app){
             li.setAttribute('class', 'contact');
             li.setAttribute('id', 'id_'+contact._id);
 
+            let date = ""
+            if (contact.birthDate) {
+                date = formatDate(contact.birthDate, "yyyy-MM-dd") ?? "";
+            }
+
 
             //TODO upravit datum, aby se ukazovalo hezky
             li.innerHTML = `<div class="contact-name">${contact.firstName ?? ""} ${contact.lastName ?? ""}</div>
@@ -37,7 +42,7 @@ if (app){
                                 Phone: ${contact.phone ?? ""} <br>
                                 Note: ${contact.note ?? ""} <br>
                                 Gender: ${contact.gender ?? "Preferred not to say"} <br>
-                                Birthday: ${contact.birthDate ?? ""} <br>
+                                Birthday: ${date ?? ""} <br>
                                 
                                 <fieldset>
                                     <legend>Adress</legend>
