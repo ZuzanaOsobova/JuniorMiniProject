@@ -168,7 +168,10 @@ if (app) {
 
         const result = await response.json();
 
-
+        if (!result.ok) {
+          message.innerText = "There has been an error while saving the contact (╥﹏╥)"
+          message.style.color = "red";
+        } else {
           message.style.color = "green";
           message.innerText = "Contact was successfully saved;";
           message.style.opacity = "1";
@@ -177,7 +180,7 @@ if (app) {
           setTimeout(() =>{
             message.style.opacity = "0";
           }, 5000)
-
+        }
 
         console.log(result);
       }
