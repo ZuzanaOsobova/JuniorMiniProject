@@ -4,6 +4,7 @@ import '../main.css';
 import TextInput from "./TextInput.tsx";
 import NumberInput from "./NumberInput.tsx";
 import TextArea from "./TextArea.tsx";
+import TelInput from "./TelInput.tsx";
 
 interface ContactFormProps {
   onSubmit: (contact: Omit<Contact, '_id' | 'create_date'>) => void;
@@ -59,11 +60,7 @@ export const ContactForm: FC<ContactFormProps> = ({ onSubmit, initialData }) => 
                   <TextInput name={"Email"} idName={"email"} placeholder={"john.smith@tardis.uk"} />
 
 
-
-
-                  <label htmlFor="phone">Phone:</label>
-                  <input type="tel" name="phone" id="phone"
-                         placeholder="+000 123 456 789"/>
+                  <TelInput idName={"phone"} name={"Phone"} />
 
                   <TextArea idName={"note"} name={"Note"} placeholder={"Enter some notes about your new contact..."} />
 
