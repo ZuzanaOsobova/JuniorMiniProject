@@ -3,6 +3,7 @@ import type { Contact } from '../types/contact';
 import '../main.css';
 import TextInput from "./TextInput.tsx";
 import NumberInput from "./NumberInput.tsx";
+import TextArea from "./TextArea.tsx";
 
 interface ContactFormProps {
   onSubmit: (contact: Omit<Contact, '_id' | 'create_date'>) => void;
@@ -64,8 +65,7 @@ export const ContactForm: FC<ContactFormProps> = ({ onSubmit, initialData }) => 
                   <input type="tel" name="phone" id="phone"
                          placeholder="+000 123 456 789"/>
 
-                  <label htmlFor="note">Note</label>
-                  <textarea name="note" id="note" placeholder="Note" rows={4}></textarea>
+                  <TextArea idName={"note"} name={"Note"} placeholder={"Enter some notes about your new contact..."} />
 
 
                   <fieldset id="gender">
