@@ -6,6 +6,7 @@ import NumberInput from "./NumberInput.tsx";
 import TextArea from "./TextArea.tsx";
 import TelInput from "./TelInput.tsx";
 import DateInput from "./DateInput.tsx";
+import RadioInput from "./RadioInput.tsx";
 
 interface ContactFormProps {
   onSubmit: (contact: Omit<Contact, '_id' | 'create_date'>) => void;
@@ -69,20 +70,11 @@ export const ContactForm: FC<ContactFormProps> = ({ onSubmit, initialData }) => 
                   <fieldset id="gender">
                       <legend>Gender</legend>
                       <div className="gender">
-                        <span className="singleGender">
-                          <input type="radio" name="gender" id="female" value="female"/>
-                          <label htmlFor="female">Female</label>
-                        </span>
 
-                                  <span className="singleGender">
-                          <input type="radio" name="gender" id="male" value="male"/>
-                          <label htmlFor="male">Male</label>
-                        </span>
+                          <RadioInput idName={"female"} name={"gender"} />
+                          <RadioInput idName={"male"} name={"gender"} />
+                          <RadioInput idName={"other"} name={"gender"} />
 
-                                  <span className="singleGender">
-                          <input type="radio" name="gender" id="other" value="other"/>
-                          <label htmlFor="other">Other</label>
-                        </span>
                       </div>
 
                   </fieldset>
