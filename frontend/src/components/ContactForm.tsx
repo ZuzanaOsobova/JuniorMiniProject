@@ -5,6 +5,7 @@ import TextInput from "./TextInput.tsx";
 import NumberInput from "./NumberInput.tsx";
 import TextArea from "./TextArea.tsx";
 import TelInput from "./TelInput.tsx";
+import DateInput from "./DateInput.tsx";
 
 interface ContactFormProps {
   onSubmit: (contact: Omit<Contact, '_id' | 'create_date'>) => void;
@@ -97,10 +98,8 @@ export const ContactForm: FC<ContactFormProps> = ({ onSubmit, initialData }) => 
                       <NumberInput idName={"zipCode"} name={"Zip Code"} />
                   </fieldset>
 
+                  <DateInput idName={"birthDate"} name={"Birthday"} />
 
-                  <label htmlFor="birthDate">Birthday:</label>
-                  <input type="date" name="birthDate" id="birthDate" min="1900-01-01"/>
-                  <small id="birthDateError" className="error" aria-live="polite"></small><br/>
 
                   <button type="submit" className="submit">Submit</button>
                   <small id="message"></small>
