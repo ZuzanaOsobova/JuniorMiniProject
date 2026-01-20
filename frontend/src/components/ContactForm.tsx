@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import type { Contact } from '../types/contact';
 import '../main.css';
 import TextInput from "./TextInput.tsx";
+import NumberInput from "./NumberInput.tsx";
 
 interface ContactFormProps {
   onSubmit: (contact: Omit<Contact, '_id' | 'create_date'>) => void;
@@ -96,9 +97,7 @@ export const ContactForm: FC<ContactFormProps> = ({ onSubmit, initialData }) => 
                       <TextInput idName={"street"} name={"Street"} placeholder={"Batstreet"} />
                       <TextInput idName={"houseNumber"} name={"House Number"} placeholder={"47"} />
 
-
-                      <label htmlFor="zipCode">Zip Code:</label>
-                      <input type="number" name="zipCode" id="zipCode" placeholder="Zip Code"/>
+                      <NumberInput idName={"zipCode"} name={"Zip Code"} />
                   </fieldset>
 
 
