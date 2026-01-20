@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import type { Contact } from '../types/contact';
 import '../main.css';
+import TextInput from "./TextInput.tsx";
 
 interface ContactFormProps {
   onSubmit: (contact: Omit<Contact, '_id' | 'create_date'>) => void;
@@ -48,15 +49,14 @@ export const ContactForm: FC<ContactFormProps> = ({ onSubmit, initialData }) => 
           <div className="form-group">
               <form className="form-horizontal" id="contactForm">
 
-                  <label htmlFor="firstName">First Name:*</label>
-                  <input type="text" name="firstName" id="firstName" placeholder="Mary" required/>
 
-                  <label htmlFor="lastName">Last Name:*</label>
-                  <input type="text" name="lastName" id="lastName" placeholder="Sue" required/>
+                  <TextInput idName={"firstName"} name={"First Name"} placeholder={"John"} required={true}/>
 
-                  <label htmlFor="email">Email:*</label>
-                  <input type="email" name="email" id="email" placeholder="example@example.com" required/>
-                  <p id="incorrectEmail" style={{color: "#dd0000"}}></p>
+                  <TextInput name={"Last Name"} idName={"lastName"} placeholder={"Smith"} required={true}/>
+
+                  <TextInput name={"Email"} idName={"email"} placeholder={"john.smith@tardis.uk"} />
+
+
 
 
                   <label htmlFor="phone">Phone:</label>
@@ -91,14 +91,11 @@ export const ContactForm: FC<ContactFormProps> = ({ onSubmit, initialData }) => 
 
                   <fieldset>
                       <legend>Address</legend>
-                      <label htmlFor="city">City:</label>
-                      <input type="text" name="city" id="city" placeholder="City"/>
 
-                      <label htmlFor="street">Street:</label>
-                      <input type="text" name="street" id="street" placeholder="Street"/>
+                      <TextInput idName={"city"} name={"City"} placeholder={"Gotham"} />
+                      <TextInput idName={"street"} name={"Street"} placeholder={"Batstreet"} />
+                      <TextInput idName={"houseNumber"} name={"House Number"} placeholder={"47"} />
 
-                      <label htmlFor="houseNumber">House Number:</label>
-                      <input type="text" name="houseNumber" id="houseNumber" placeholder="House Number"/>
 
                       <label htmlFor="zipCode">Zip Code:</label>
                       <input type="number" name="zipCode" id="zipCode" placeholder="Zip Code"/>
