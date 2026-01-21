@@ -10,12 +10,12 @@ import RadioInput from "./RadioInput.tsx";
 import FieldSet from "./FieldSet.tsx";
 import InputComponent from "./InputComponent.tsx";
 
-interface ContactFormProps {
-  onSubmit: (contact: Omit<Contact, '_id' | 'create_date'>) => void;
-  initialData?: Contact;
+type ContactFormProps = {
+    onSubmit: (contact: Omit<Contact, '_id' | 'create_date'>) => void;
+    initialData?: Contact,
 }
 
-export const ContactForm: FC<ContactFormProps> = ({ onSubmit, initialData }) => {
+export const ContactForm = ({ onSubmit, initialData } : ContactFormProps) => {
   // TODO: Implementovat formulář s těmito prvky:
   //
   // Povinná pole:
