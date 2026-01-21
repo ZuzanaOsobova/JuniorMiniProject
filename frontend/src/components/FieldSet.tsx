@@ -8,14 +8,14 @@ type FieldSetProps = {
 
 }
 
-export default function FieldSet(props: FieldSetProps) {
+export default function FieldSet({children, id, legend, className}: FieldSetProps) {
 
 
     return (
         <>
-            <fieldset id={props.id} className={props.className}>
-                <legend>{props.legend}</legend>
-                {props.children}
+            <fieldset id={id} className={className}>
+                <legend>{legend}</legend>
+                {children}
             </fieldset>
         </>
     )

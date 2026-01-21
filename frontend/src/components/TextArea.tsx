@@ -6,8 +6,7 @@ type TextAreaProps = {
     required?: boolean;
 }
 
-export default function TextArea(props: TextAreaProps) {
-    const {idName, name, placeholder, rows = 4, required = false} = props;
+export default function TextArea({idName, name, placeholder, rows, required}: TextAreaProps) {
 
 
     return (

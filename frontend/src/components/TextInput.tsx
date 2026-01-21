@@ -5,8 +5,7 @@ type TextInputProps = {
     required?: boolean;
 }
 
-export default function TextInput(props: TextInputProps) {
-    const {idName, name, placeholder, required = false} = props;
+export default function TextInput({idName, name, placeholder, required = false}: TextInputProps) {
 
 
     return (

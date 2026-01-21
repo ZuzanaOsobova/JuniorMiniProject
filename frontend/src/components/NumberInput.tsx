@@ -5,8 +5,7 @@ type NumberInputProps = {
     required?: boolean;
 }
 
-export default function NumberInput(props: NumberInputProps) {
-    const {idName, name, value, required = false} = props;
+export default function NumberInput({idName, name, value, required}: NumberInputProps) {
 
 
     return (

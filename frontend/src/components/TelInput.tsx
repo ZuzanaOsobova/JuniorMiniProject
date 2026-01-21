@@ -4,8 +4,7 @@ type TelInputProps = {
     required?: boolean;
 }
 
-export default function TelInput(props: TelInputProps) {
-    const {idName, name, required = false} = props;
+export default function TelInput({idName, name, required = false}: TelInputProps) {
 
 
     return (

@@ -3,8 +3,7 @@ type RadioInputProps = {
     name: string;
 }
 
-export default function RadioInput(props: RadioInputProps) {
-    const {idName, name} = props;
+export default function RadioInput({idName, name}: RadioInputProps) {
 
     const label = idName[0].toUpperCase() + idName.slice(1);
 
