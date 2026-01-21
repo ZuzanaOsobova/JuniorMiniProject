@@ -7,6 +7,7 @@ import TextArea from "./TextArea.tsx";
 import TelInput from "./TelInput.tsx";
 import DateInput from "./DateInput.tsx";
 import RadioInput from "./RadioInput.tsx";
+import FieldSet from "./FieldSet.tsx";
 
 interface ContactFormProps {
   onSubmit: (contact: Omit<Contact, '_id' | 'create_date'>) => void;
@@ -67,28 +68,21 @@ export const ContactForm: FC<ContactFormProps> = ({ onSubmit, initialData }) => 
                   <TextArea idName={"note"} name={"Note"} placeholder={"Enter some notes about your new contact..."} />
 
 
-                  <fieldset id="gender">
-                      <legend>Gender</legend>
-                      <div className="gender">
+                  <FieldSet id={"gender"} legend={"Gender"} className={"gender"} >
+                      <RadioInput idName={"female"} name={"gender"} />
+                      <RadioInput idName={"male"} name={"gender"} />
+                      <RadioInput idName={"other"} name={"gender"} />
+                  </FieldSet>
 
-                          <RadioInput idName={"female"} name={"gender"} />
-                          <RadioInput idName={"male"} name={"gender"} />
-                          <RadioInput idName={"other"} name={"gender"} />
-
-                      </div>
-
-                  </fieldset>
-
-
-                  <fieldset>
-                      <legend>Address</legend>
-
+                  <FieldSet id={"address"} legend={"Address"} >
                       <TextInput idName={"city"} name={"City"} placeholder={"Gotham"} />
                       <TextInput idName={"street"} name={"Street"} placeholder={"Batstreet"} />
                       <TextInput idName={"houseNumber"} name={"House Number"} placeholder={"47"} />
 
                       <NumberInput idName={"zipCode"} name={"Zip Code"} />
-                  </fieldset>
+
+                  </FieldSet>
+
 
                   <DateInput idName={"birthDate"} name={"Birthday"} />
 
