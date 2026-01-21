@@ -56,11 +56,11 @@ export const ContactForm: FC<ContactFormProps> = ({ onSubmit, initialData }) => 
           <div className="form-group">
               <form className="form-horizontal" id="contactForm">
 
-                  <InputComponent id={"firstName"} label={"First Name"} type={"text"} name={"firstName"} placeholder={"John"} required={true}/>
+                  <InputComponent id={"firstName"} label={"First Name"} type={"text"} name={"firstName"} placeholder={"John"} required/>
 
-                  <InputComponent id={"lastName"} label={"Last Name"} type={"text"} name={"text"} placeholder={"Smith"}  required={true} />
+                  <InputComponent id={"lastName"} label={"Last Name"} type={"text"} name={"text"} placeholder={"Smith"}  required/>
 
-                  <InputComponent id={"email"} label={"Email"} type={"email"} name={"email"} placeholder={"john.smith@tardic.uk"} required={true}/>
+                  <InputComponent id={"email"} label={"Email"} type={"email"} name={"email"} placeholder={"john.smith@tardic.uk"} required/>
 
 
                   <TelInput idName={"phone"} name={"Phone"} />
