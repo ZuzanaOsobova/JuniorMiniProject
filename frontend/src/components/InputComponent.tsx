@@ -13,6 +13,7 @@ type InputComponentProps = {
 
 export default function InputComponent({id, label, type, name, placeholder, value }: InputComponentProps) {
 
+    //TODO kontrola pokud type=date, tak kontrola, že se člověk nenarodil v budoucnosti
 
     return (
         <>

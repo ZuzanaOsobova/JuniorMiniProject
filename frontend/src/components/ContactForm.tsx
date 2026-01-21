@@ -63,7 +63,8 @@ export const ContactForm: FC<ContactFormProps> = ({ onSubmit, initialData }) => 
                   <InputComponent id={"email"} label={"Email"} type={"email"} name={"email"} placeholder={"john.smith@tardic.uk"} required/>
 
 
-                  <TelInput idName={"phone"} name={"Phone"} />
+                  <InputComponent id={"phone"} label={"Phone"} type={"tel"} name={"phone"} placeholder={"+420 123 456 789"} />
+
 
                   <TextArea idName={"note"} name={"Note"} placeholder={"Enter some notes about your new contact..."} />
 
@@ -75,16 +76,16 @@ export const ContactForm: FC<ContactFormProps> = ({ onSubmit, initialData }) => 
                   </FieldSet>
 
                   <FieldSet id={"address"} legend={"Address"} >
-                      <TextInput idName={"city"} name={"City"} placeholder={"Gotham"} />
-                      <TextInput idName={"street"} name={"Street"} placeholder={"Batstreet"} />
-                      <TextInput idName={"houseNumber"} name={"House Number"} placeholder={"47"} />
 
-                      <NumberInput idName={"zipCode"} name={"Zip Code"} />
+                      <InputComponent id={"city"} label={"City"} type={"text"} name={"city"} placeholder={"Gotham"} />
+                      <InputComponent id={"street"} label={"Street"} type={"text"} name={"street"} placeholder={"Batstreet"} />
+                      <InputComponent id={"houseNumber"} label={"House Number"} type={"text"} name={"houseNumber"} placeholder={"47"} />
+                      <InputComponent id={"zipCode"} label={"Zip Code"} type={"number"} name={"zipCode"} />
 
                   </FieldSet>
 
 
-                  <DateInput idName={"birthDate"} name={"Birthday"} />
+                  <InputComponent id={"birthDate"} label={"Birthday"} type={"date"} name={"birthdate"} />
 
 
                   <button type="submit" className="submit">Submit</button>
