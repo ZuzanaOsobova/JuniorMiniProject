@@ -8,6 +8,7 @@ import TelInput from "./TelInput.tsx";
 import DateInput from "./DateInput.tsx";
 import RadioInput from "./RadioInput.tsx";
 import FieldSet from "./FieldSet.tsx";
+import InputComponent from "./InputComponent.tsx";
 
 interface ContactFormProps {
   onSubmit: (contact: Omit<Contact, '_id' | 'create_date'>) => void;
@@ -55,12 +56,11 @@ export const ContactForm: FC<ContactFormProps> = ({ onSubmit, initialData }) => 
           <div className="form-group">
               <form className="form-horizontal" id="contactForm">
 
+                  <InputComponent id={"firstName"} label={"First Name"} type={"text"} name={"firstName"} placeholder={"John"} required={true}/>
 
-                  <TextInput idName={"firstName"} name={"First Name"} placeholder={"John"} required={true}/>
+                  <InputComponent id={"lastName"} label={"Last Name"} type={"text"} name={"text"} placeholder={"Smith"}  required={true} />
 
-                  <TextInput name={"Last Name"} idName={"lastName"} placeholder={"Smith"} required={true}/>
-
-                  <TextInput name={"Email"} idName={"email"} placeholder={"john.smith@tardis.uk"} />
+                  <InputComponent id={"email"} label={"Email"} type={"email"} name={"email"} placeholder={"john.smith@tardic.uk"} required={true}/>
 
 
                   <TelInput idName={"phone"} name={"Phone"} />
